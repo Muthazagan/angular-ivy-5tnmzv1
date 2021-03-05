@@ -1,30 +1,37 @@
-<form #heroForm="ngForm" appIdentityRevealed>
-	<div [hidden]="heroForm.submitted">
-		<div class="cross-validation"
-			[class.cross-validation-error]="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)">
-			<div class="form-group">
-				<label for="name">Name</label>
-				<input id="name" name="name" class="form-control"
-                required  appForbiddenName="bob"
+<div class="container">
+	<form #testForm="ngForm" appIdentityRevealed>
+		<div [hidden]="testForm.submitted">
+			<div class="cross-validation"
+				[class.cross-validation-error]="testForm.errors?.identityRevealed && (testForm.touched || testForm.dirty)">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input id="name" name="name" class="form-control"
+                required minlength="3"  appForbiddenName="bob"
                 [(ngModel)]="test.name" #name="ngModel" >
 
-				<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+					<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
-					<div *ngIf="name.errors.required">
-						Name is required.
-					</div>
-					<div *ngIf="name.errors.minlength">
-						Name must be at least 4 characters long.
-					</div>
-					<div *ngIf="name.errors.forbiddenName">
-						Name cannot be Bob.
-					</div>
+						<div *ngIf="name.errors.required">
+							Name is required.
+						</div>
+						<div *ngIf="name.errors.minlength">
+							Name must be at least 4 characters long.
+						</div>
+						<div *ngIf="name.errors.forbiddenName">
+							Name cannot be Bob.
+						</div>
 
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<button type="submit" class="btn btn-default"
-              [disabled]="heroForm.invalid">Submit</button>
+				<div class="form-group">
+					<label for="email" >Email</label>
+					<input id="email" name="email" class="form-control" required [(ngModel)]="email" #email="ngModel" >
+				</div>
+				</div>
 
-</form>
+			</div>
+			<button type="submit" class="btn btn-default"
+              [disabled]="testForm.invalid">Submit</button>
+
+	</form>
+</div>
