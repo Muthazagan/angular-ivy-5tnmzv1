@@ -10,4 +10,8 @@ export class AppComponent {
   powers = ["Really Smart", "Super Flexible", "Weather Changer"];
   //hero = { name: "Dr.", alterEgo: "Dr. What", power: this.powers[0] };
   test = { name: "", email: "", alterEgo: "Dr. What", power: this.powers[0] };
+
+  onSubmit(): void {
+    alert("Form Submitted");
+  }
 }
