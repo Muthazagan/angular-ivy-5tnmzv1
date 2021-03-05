@@ -1,6 +1,6 @@
 <div class="container">
 	<form #testForm="ngForm" appIdentityRevealed>
-		<div [hidden]="formDir.submitted">
+		<div [hidden]="testForm.submitted">
 			<div class="cross-validation"
 				[class.cross-validation-error]="testForm.errors?.identityRevealed && (testForm.touched || testForm.dirty)">
 				<div class="form-group">
@@ -17,12 +17,10 @@
 						<div *ngIf="name.errors.minlength">
 							Name must be at least 3 characters long.
 						</div>
-						<div *ngIf="name.errors.forbiddenName">
-							Name cannot be Bob.
-						</div>
+
 
 					</div>
-				</div>
+					<!-- </div>
 				<div class="form-group">
 					<label for="email" >Email</label>
 					<input id="email" name="email" class="form-control" required [(ngModel)]="email" #email="ngModel" >
@@ -31,16 +29,16 @@
 							Email is required.
 						</div>
 					</div>
+				</div> -->
 				</div>
-			</div>
 
-		</div>
-		<button type="submit" class="btn btn-default"
+			</div>
+			<button type="submit" class="btn btn-default"
               [disabled]="testForm.invalid">Submit</button>
 
 	</form>
-	<div class="submitted-message" *ngIf="formDir.submitted">
+	<!-- <div class="submitted-message" *ngIf="formDir.submitted">
 		<p>You've submitted your hero, {{ testForm.value.name }}!</p>
 		<button (click)="formDir.resetForm({})">Add new User</button>
-	</div>
+	</div> -->
 </div>
