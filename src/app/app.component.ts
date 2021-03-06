@@ -15,7 +15,8 @@ export class AppComponent {
     email: "",
     alterEgo: "Dr. What",
     power: this.powers[0],
-    mobile: ""
+    mobile: "",
+    file: ""
   };
   file: any;
   onSubmit(testForm: NgForm) {
