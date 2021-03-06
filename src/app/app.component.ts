@@ -1,5 +1,7 @@
 import { Component, VERSION } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "my-app",
@@ -16,9 +18,21 @@ export class AppComponent {
     alterEgo: "Dr. What",
     power: this.powers[0],
     mobile: "",
-    file: ""
+    file: [""]
   };
+  SERVER_URL = "http://localhost:3000/upload";
+  testForm: FormGroup;
   file: any;
+  constructor(
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient
+  ) {}
+  ngOnInit() {
+    this.testForm = this.formBuilder.group({
+      profile: [""]
+    });
+  }
+
   onSubmit(testForm: NgForm) {
     console.log(testForm.value.name); // { first: '', last: '' }
     console.log(testForm.value); // false
@@ -31,5 +45,12 @@ export class AppComponent {
       return false;
     }
     return true;
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.testForm.get("profile").setValue(file);
+    }
   }
 }
