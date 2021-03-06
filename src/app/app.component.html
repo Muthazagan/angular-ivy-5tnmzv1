@@ -1,26 +1,26 @@
 <div class="container">
-	<form #testForm="ngForm" appIdentityRevealed>
-		<div [hidden]="testForm.submitted">
-			<div class="cross-validation"
-				[class.cross-validation-error]="testForm.errors?.identityRevealed && (testForm.touched || testForm.dirty)">
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input id="name" name="name" class="form-control"
+  <form #testForm="ngForm" appIdentityRevealed>
+    <div [hidden]="testForm.submitted">
+      <div class="cross-validation"
+        [class.cross-validation-error]="testForm.errors?.identityRevealed && (testForm.touched || testForm.dirty)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" name="name" class="form-control"
                 required minlength="3"  appForbiddenName="bob"
-                [(ngModel)]="test.name" #name="ngModel" >
+                [(ngModel)]="test.name" #name="ngModel" autocomplete="off" >
 
-					<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
 
-						<div *ngIf="name.errors.required">
-							Name is required.
-						</div>
-						<div *ngIf="name.errors.minlength">
-							Name must be at least 3 characters long.
-						</div>
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="name.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
 
 
-					</div>
-					<!-- </div>
+          </div>
+          <!-- </div>
 				<div class="form-group">
 					<label for="email" >Email</label>
 					<input id="email" name="email" class="form-control" required [(ngModel)]="email" #email="ngModel" >
@@ -30,36 +30,36 @@
 						</div>
 					</div>
 				</div> -->
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input id="email" name="email" class="form-control"
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" class="form-control"
                 required email
-                [(ngModel)]="test.email" #email="ngModel" >
+                [(ngModel)]="test.email" #email="ngModel" autocomplete="off">
 
-					<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
 
-						<div *ngIf="email.errors.required">
-							Email is required.
-						</div>
-						<div *ngIf="email.errors.email">
-							Enter a Valid Email Address
-						</div>
-
-
-
-					</div>
-				</div>
+            <div *ngIf="email.errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="email.errors.email">
+              Enter a Valid Email Address
+            </div>
 
 
-			</div>
-		</div>
-		<button type="submit" class="btn btn-default"
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default"
               [disabled]="testForm.invalid">Submit</button>
 
-	</form>
-	<div class="submitted-message" *ngIf="testForm.submitted">
-		<p>You've submitted your hero, {{ testForm.value.name }}!</p>
-		<button (click)="testForm.resetForm({})">Add new User</button>
-	</div>
+  </form>
+  <div class="submitted-message" *ngIf="testForm.submitted">
+    <p>You've submitted , {{ testForm.value.name }}!</p>
+    <button (click)="testForm.resetForm({})">Add new User</button>
+  </div>
 </div>
