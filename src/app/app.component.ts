@@ -1,5 +1,5 @@
 import { Component, VERSION } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { FormGroup, NgForm } from "@angular/forms";
 
 @Component({
   selector: "my-app",
@@ -16,7 +16,8 @@ export class AppComponent {
     alterEgo: "Dr. What",
     power: this.powers[0],
     mobile: "",
-    file: [""]
+    file: [""],
+    password: ""
   };
   file: any;
   onSubmit(testForm: NgForm) {
@@ -31,5 +32,13 @@ export class AppComponent {
       return false;
     }
     return true;
+  }
+
+  checkPasswords(group: FormGroup) {
+    // here we have the 'passwords' group
+    const password = group.get("password").value;
+    const confirmPassword = group.get("confirmPassword").value;
+
+    return password === confirmPassword ? null : { notSame: true };
   }
 }
