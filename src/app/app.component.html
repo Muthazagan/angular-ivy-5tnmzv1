@@ -63,7 +63,7 @@
           </div>
           <div class="form-group" style="width:50%">
             <label for="file">Select File</label>
-            <input type="file" id="file"  name="file" (change)="onFileSelect($event)" class="form-control"
+            <input type="file" id="file"  name="file"  class="form-control"
 
                 [(ngModel)]="test.file" #file="ngModel" >
 
@@ -78,6 +78,10 @@
     </form>
     <div class="submitted-message" *ngIf="testForm.submitted">
       <p>You've submitted , {{ testForm.value.name }}!</p>
+      <p>Name : {{testForm.value.name}}</p>
+      <p>Email : {{testForm.value.email}}</p>
+      <p>Mobile : {{testForm.value.mobile}}</p>
+      <p>File : {{testForm.value.file}}</p>
       <button (click)="testForm.resetForm({})">Add new User</button>
     </div>
   </div>
