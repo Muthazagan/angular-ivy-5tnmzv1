@@ -1,11 +1,13 @@
 <div class="container">
 
-  <div class="form">
-    <form #testForm="ngForm" appIdentityRevealed>
+  <h3 style="text-align:center;">LogIn</h3>
+  <div class="" style="margin-left: 382px;">
+
+    <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)" appIdentityRevealed class="card card-body">
       <div [hidden]="testForm.submitted">
         <div class="cross-validation"
           [class.cross-validation-error]="testForm.errors?.identityRevealed && (testForm.touched || testForm.dirty)">
-          <div class="form-group" style="width:30%">
+          <div class="form-group " style="width:50%">
             <label for="name">Name</label>
             <input id="name" name="name" class="form-control"
                 required minlength="3"  appForbiddenName="bob"
@@ -21,7 +23,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group" style="width:30%">
+          <div class="form-group" style="width:50%">
             <label for="email">Email</label>
             <input id="email" name="email" class="form-control"
                 required email
@@ -40,9 +42,9 @@
 
             </div>
           </div>
-          <div class="form-group" style="width:30%">
+          <div class="form-group" style="width:50%">
             <label for="mobile">Mobile</label>
-            <input id="mobile" name="mobile" class="form-control"
+            <input id="mobile" (keypress)="numberOnly($event)" name="mobile" class="form-control"
                 required [maxLength]="10" minlength="10"
                 [(ngModel)]="test.mobile" #mobile="ngModel" autocomplete="off">
 
@@ -59,6 +61,13 @@
 
             </div>
           </div>
+          <div class="form-group" style="width:50%">
+            <label for="file">Select File</label>
+            <input type="file" id="file"  name="file" class="form-control"
+
+                [(ngModel)]="file" #file="ngModel" >
+
+          </div>
 
 
         </div>
@@ -67,9 +76,10 @@
               [disabled]="testForm.invalid">Submit</button>
 
     </form>
+    <div class="submitted-message" *ngIf="testForm.submitted">
+      <p>You've submitted , {{ testForm.value.name }}!</p>
+      <button (click)="testForm.resetForm({})">Add new User</button>
+    </div>
   </div>
-  <div class="submitted-message" *ngIf="testForm.submitted">
-    <p>You've submitted , {{ testForm.value.name }}!</p>
-    <button (click)="testForm.resetForm({})">Add new User</button>
-  </div>
+
 </div>
